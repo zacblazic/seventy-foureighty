@@ -1,0 +1,97 @@
+<!-- This uses the standard document type -->
+<!doctype html>
+<!-- Here we are specifying the language code to help browsers and search engines -->
+<html lang="en">
+  <head>
+    <!-- Specifies the character encoding for the page -->
+    <meta charset="utf-8">
+    <title>Page</title>
+    <!-- For stylesheets, type will default to text/css -->
+    <link rel="stylesheet" href="style.css" type="text/css" />
+    <!-- The style attribute below also defaults to text/css -->
+    <style>
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <!-- Anchor tag can now contain other elements -->
+        <a>
+          <h1>Page</h1>
+          <h2>More text here</h2>
+        </a>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+      </header>
+      <article>
+        <!-- Articles can have their own headers -->
+        <h1>Awesome content</h1>
+        <p>Some description</p>
+        <div id="players">
+          <div class="label">Full speed:</div>
+          <div class="player">
+            <!-- Attributes without values are equivalent to  attribute="true" or attribute="attribute" -->
+            <audio controls src="file.mp3">
+              <!-- You can also specify different formats here -->
+              <!-- If a format is not usable, it will fall through to the next -->
+              <source />
+              <!-- You can specify flash to be used instead -->
+              <object type="application/x-shockwave-flash" data="file.swf">
+              </object>
+            </audio>
+          </div>
+        </div>
+
+        <!-- The mark element highlights the below text -->
+        <p><mark>Important text here</mark></p>
+
+        <figure>
+          <!-- Can have image, chart (using canvas) or some code -->
+          <pre>System.out.println("Hello, world!")</pre>
+          <figcaption>Print text in Java</figcaption>
+        </figure>
+
+        <!-- Summary will show by default, with the rest of the content hidden -->
+        <!-- Clicking the summary will show the details -->
+        <details>
+          <summary>TLDR</summary>
+          <ul>
+            <li><a href="http://www.bing.com">Useless link</a></li>
+            <li><a href="http://www.bing.com">Useless link</a></li>
+            <li><a href="http://www.bing.com">Useless link</a></li>
+            <li><a href="http://www.bing.com">Useless link</a></li>
+          </ul>
+        </details>
+      </article>
+
+      <!-- Content in aside elements are loosely related to the article -->
+      <aside>
+        <!-- The header is logically contained inside the aside element -->
+        <!-- Previously you would not be able to have more than one header -->
+       <h1>Fun things</h1>
+       <p>Text here about fun things</p>
+      </aside>
+
+      <footer>
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <!-- Pubdate specifieds that this time element is the the date that the page was published -->
+        <div>Published <time datetime="2014-10-07T13:25:33+2:00" pubdate>10 October, 2014</time></div>
+        <div>All rights reserved &copy; Person 2014</div>
+      </footer>
+    </main>
+    <!-- For scripts, type will default to text/javascript -->
+    <script src="script.js"></script>
+  </body>
+</html>
