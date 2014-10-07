@@ -8,8 +8,6 @@ Allows the user to pick a color.
 
     <input type="color"/ >
 
-<input type="color"/ >
-
 ## Datalist
 
 Allows you to provide a preset list of options to a text box.
@@ -22,14 +20,6 @@ Allows you to provide a preset list of options to a text box.
       <option value="Green" />
     </datalist>
 
-<label for="colors-box">Colors</label>
-<input id="colors-box" list="colors" />
-<datalist id="colors" >
-  <option value="Blue" />
-  <option value="Red" />
-  <option value="Green" />
-</datalist>
-
 Above, the input defaults to type text because of the specified list attribute.
 Good use case for suggestions.
 
@@ -38,7 +28,6 @@ Good use case for suggestions.
 Renders a date picker from which the user can select a date.
 
     <input type="date" />
-<input type="date" />
 
 ## Time
 
