@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+<head>
+  <title>Geolocation Example</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" href="geolocation.css" />
+</head>
+<body>
+  <div class="details">
+    <div class="panel panel-default">
+      <form class="form-horizontal">
+        <fieldset>
+          <div class="form-group">
+            <label for="latitude" class="col-sm-3 control-label">Latitude</label>
+            <div class="col-sm-8">
+              <input type="text" id="latitude" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="longitude" class="col-sm-3 control-label">Longitude</label>
+            <div class="col-sm-8">
+              <input type="text" id="longitude" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="accuracy" class="col-sm-3 control-label">Accuracy</label>
+            <div class="col-sm-8">
+              <input type="text" id="accuracy" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="altitude" class="col-sm-3 control-label">Altitude</label>
+            <div class="col-sm-8">
+              <input type="text" id="altitude" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="altitude-accuracy" class="col-sm-3 control-label">Altitude Accuracy</label>
+            <div class="col-sm-8">
+              <input type="text" id="altitude-accuracy" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="heading" class="col-sm-3 control-label">Heading</label>
+            <div class="col-sm-8">
+              <input type="text" id="heading" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="speed" class="col-sm-3 control-label">Speed</label>
+            <div class="col-sm-8">
+              <input type="text" id="speed" class="form-control" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="timestamp" class="col-sm-3 control-label">Timestamp</label>
+            <div class="col-sm-8">
+              <input type="text" id="timestamp" class="form-control" />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+
+  <input type="button" id="get-location-button" class="btn btn-primary" value="Get Location" />
+  <input type="button" id="watch-location-button" class="btn btn-primary" value="Watch Location" />
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var watchId;
+
+      $("#get-location-button").click(function() {
+
+        // Setup location options
+        var options = {
+          enableHighAccuracy: true,
+          maxAge: 10000,
+          timeout: 10000
+        }
+
+        navigator.geolocation.getCurrentPosition(showPosition, positionError, options);
+      });
+
+      $("#watch-location-button").click(function() {
+        if (!watchId) {
+          // Start watching
+          watchId = navigator.geolocation.watchPosition(showPosition, positionError);
+
+          // Update button to watching state
+          $(this).val("Stop Watching");
+          $(this).removeClass("btn-primary");
+          $(this).addClass("btn-default");
+
+          // Disable other options
+          $("#get-location-button").attr("disabled", true);
+
+        } else {
+          // Clear the watch
+          navigator.geolocation.clearWatch(watchId);
+          watchId = null;
+
+          // Update button to idle state
+          $(this).val("Watch Location");
+          $(this).removeClass("btn-default");
+          $(this).addClass("btn-primary");
+
+          $("#get-location-button").removeAttr("disabled");
+        }
+      });
+
+      function showPosition(position) {
+        console.log("Updated location...");
+
+        var coords = position.coords;
+
+        // Longitude & latitude is expressed as decimals
+        // These values are guaranteed to be returned
+        $("#latitude").val(coords.latitude);
+        $("#longitude").val(coords.longitude);
+
+        // Value in meters of actualy location with 95% accuracy
+        $("#accuracy").val(coords.accuracy);
+
+        // Height of device in meters
+        $("#altitude").val(coords.altitude);
+
+        // Accuracy of altitude in meters
+        $("#altitude-accuracy").val(coords.altitudeAccuracy);
+
+        // Direction heading towards in degrees relative to true north
+        $("#heading").val(coords.heading);
+
+        // Ground speed in meters per sec
+        $("#speed").val(coords.speed);
+
+        // Date & time that coords were calculated
+        $("timestamp").val(coords.timestamp);
+      }
+
+      function positionError(error) {
+        switch(error.code) {
+          case 0: console.log("Unknown error");
+            break;
+          case 1: console.log("User chose to not share location");
+            break;
+          case 2: console.log("Unable to determine location");
+            break;
+          case 3: console.log("Request to determine location timed out");
+            break;
+        }
+      }
+
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+body {
+  margin: 10px;
+}
+
+.control-label {
+  font-weight: normal;
+  font-size: 16px;
+}
+
+.details {
+  width: 400px;
+}
+
+.details .panel {
+  padding: 20px;
+}
