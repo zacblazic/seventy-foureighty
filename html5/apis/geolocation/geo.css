@@ -11,6 +11,6 @@ body {
   width: 400px;
 }
 
-.details .panel {
-  padding: 20px;
+form {
+  margin: 30px;
 }

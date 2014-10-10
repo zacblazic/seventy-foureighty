@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <title>Session Storage</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <link rel="stylesheet" href="session.css" />
+</head>
+<body>
+  <div class="panel panel-default">
+    <div class="panel-heading">Session Storage</div>
+    <div class="panel-body">
+      <div class="well click-well">
+        <span id="clicks-session"></span>
+        <span>Clicks</span>
+      </div>
+      <button id="click-button-session" class="btn btn-primary">Click</button>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Local Storage</div>
+    <div class="panel-body">
+      <div class="well click-well">
+        <span id="clicks-local"></span>
+        <span>Clicks</span>
+      </div>
+      <button id="click-button-local" class="btn btn-primary">Click</button>
+      <button id="clear-button-local" class="btn btn-default">Clear</button>
+    </div>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="session.js"></script>
+  <script src="local.js"></script>
+</body>
+</html>
