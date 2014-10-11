@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <title>Web Sockets</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+</head>
+<body>
+  <div class="panel panel-default">
+    <div class="panel-heading">Web Sockets</div>
+    <div class="panel-body">
+      <div class="form-group">
+        <input type="text" id="message" class="form-control" />
+        <button id="send-button" class="btn btn-primary">Send</button>
+      </div>
+      <div class="well">
+        <ul id="message-log">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="sockets.js"></script>
+</body>
+</html>

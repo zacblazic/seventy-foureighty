@@ -1,0 +1,16 @@
+/* Adding a new font */
+
+@font-face {
+  font-family: own-name;
+  src: url("font.woff")
+       format("woff");
+       /* Optional urls for fallbaks */
+
+}
+
+/* Using a new font */
+
+body {
+  font-family: own-name;
+  /* Optional additional font families for fallback */
+}
