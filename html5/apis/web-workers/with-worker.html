@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <title>With Worker</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+</head>
+<body>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">With Worker</div>
+    <div class="panel-body">
+      <input type="numeric" id="series-length" value="30" />
+      <button id="generate-button" class="btn btn-primary">Generate</button>
+      <button id="close-button" class="btn btn-default">Close</button>
+      <button id="terminate-button" class="btn btn-default">Terminate</button>
+      <div>
+        <ol id="sequence">
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="with-worker.js"></script>
+</body>
+</html>

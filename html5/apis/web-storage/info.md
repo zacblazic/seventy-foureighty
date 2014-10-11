@@ -44,5 +44,9 @@ Restricted:
     storage.length()
     storage.remainingSpace() // IE9+ only
     storage.removeItem(key)
-    
+
     storage event
+
+## Handling storage limits
+
+Ensure that you always wrap calls that add data to local storage to handle storage quota exceptions.
