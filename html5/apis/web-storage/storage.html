@@ -3,7 +3,7 @@
 <head>
   <title>Session Storage</title>
   <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
-  <link rel="stylesheet" href="session.css" />
+  <link rel="stylesheet" href="storage.css" />
 </head>
 <body>
   <div class="panel panel-default">
@@ -29,8 +29,43 @@
     </div>
   </div>
 
+  <div id="event-panel" class="panel panel-default">
+    <div class="panel-heading">Storage Event</div>
+    <div class="panel-body">
+      <div>
+        <div class="event-textarea">
+          <textarea id="event-text" cols="40" rows="5">
+          </textarea>
+        </div>
+        <div class="event-outcomes">
+          <div class="well event-well">
+            <div>
+                <div>Key:</div>
+                <kbd><span id="event-key"></span></kbd>
+            </div>
+            <div>
+                <div>New:</div>
+                <kbd><span id="event-new"></span></kbd>
+            </div>
+            <div>
+                <div>Old:</div>
+                <kbd><span id="event-old"></span></kbd>
+            </div>
+            <div>
+                <div>Url:</div>
+                <kbd><span id="event-url"></span></kbd>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button id="add-button-event" class="btn btn-primary">Save</button>
+      <button id="clear-button-event" class="btn btn-default">Clear</button>
+    </div>
+  </div>
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="session.js"></script>
   <script src="local.js"></script>
+  <script src="event.js"></script>
 </body>
 </html>

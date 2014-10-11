@@ -73,3 +73,9 @@ Location is requested continually, multiple times.
 * Milliseconds
 * Determines how old a location value can be before it is recalculated
 * Default is 0 (instant recalculation)
+
+## API
+
+    navigator.geolocation.getCurrentPosition(success, error);
+    navigator.geolocation.watchPosition(success, error);
+    navigator.geolocation.clearWatch(watchId);

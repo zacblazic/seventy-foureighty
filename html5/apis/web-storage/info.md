@@ -35,12 +35,14 @@ Restricted:
 
 ## API
 
-    storage.clear
-    storage.getItem
-    storage.key
-    storage.length
-    storage.remainingSpace
-    storage.removeItem
-    storage.setItem
-
+    storage.clear()
+    storage.getItem(key)
+    storage.setItem(key, value)
+    storage["key"] = value
+    storage.key = value
+    storage.key(index)
+    storage.length()
+    storage.remainingSpace() // IE9+ only
+    storage.removeItem(key)
+    
     storage event
