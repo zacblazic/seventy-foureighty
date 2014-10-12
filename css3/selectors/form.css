@@ -1,0 +1,17 @@
+
+:required {
+  background-color: #DBDBDB;
+}
+
+:valid {
+  background-color: white;
+}
+
+::-webkit-input-placeholder {
+  color: black;
+  font-style: italic;
+}
+
+:not(button):optional {
+  border-style: dashed;
+}

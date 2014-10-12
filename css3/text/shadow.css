@@ -1,0 +1,11 @@
+/* Text shadow
+
+text-shadow: 2px (horizontal)
+             2px (vertical)
+             4px (blur)
+             #000 (color)
+*/
+
+h1 {
+  text-shadow: 4px 4px 10px #757575;
+}

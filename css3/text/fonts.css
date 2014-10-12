@@ -1,16 +1,19 @@
 /* Adding a new font */
 
 @font-face {
-  font-family: own-name;
-  src: url("font.woff")
+  font-family: bebas;
+  src: url("/vendor/bebas.woff")
        format("woff");
        /* Optional urls for fallbaks */
-
 }
 
 /* Using a new font */
 
 body {
-  font-family: own-name;
+  font-family: verdana;
+}
+
+h1, h2 {
+  font-family: bebas, arial;
   /* Optional additional font families for fallback */
 }

@@ -1,0 +1,54 @@
+/* First child only */
+#features li:first-child {
+  background-color: #A43;
+}
+
+/* Last child only */
+#features li:last-child {
+  background-color: #A43;
+}
+
+/* Specific child, non-zero based */
+#features li:nth-child(2) {
+  background-color: #A43;
+}
+
+/* Every second (odd) child */
+#features li:nth-child(2n) {
+  background-color: #A43;
+}
+
+/* Every first (even) child */
+#features li:nth-child(2n-1) {
+  background-color: #999396;
+}
+
+/* Blend 3 colors */
+#features li:nth-child(3n) {
+  background-color: #616161;
+}
+
+#features li:nth-child(3n-1) {
+  background-color: #A1A1A1;
+}
+
+#features li:nth-child(3n-2) {
+  background-color: #CCCCCC;
+}
+
+/* Current target as defined by an anchor tag click, referencing
+   some area on the page */
+:target {
+  background-color: blue;
+}
+
+/* Text selection or highlighting */
+::selection {
+  background-color: #ccc;
+  color: #fff;
+}
+
+/* Similar to body, but instead covers entire document */
+:root {
+  background-color: #fff;
+}
