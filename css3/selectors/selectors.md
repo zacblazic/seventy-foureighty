@@ -124,8 +124,6 @@ Based on current state of element
 * Matches elements with empty text/children
 * Comments don't count as content and therefore matches too
 
-    :root
-
 ### Other Pseudo Classes
 
     :lang
