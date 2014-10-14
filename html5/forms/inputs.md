@@ -1,6 +1,7 @@
 # New Input Types
 
-If any input types are not supported, the browser will fallback to an input of type text.
+If any input types are not supported, the browser will fall back to an input
+of type text.
 
 ## Color
 
@@ -84,3 +85,7 @@ Renders a spinner containing numbers. Will not accept alpha characters.
 Allows you to enter a search term, and renders an "x" to clear the text.
 
     <input type="search" />
+
+## Date & Time
+
+Not very well supported and possibly pulled from the spec.

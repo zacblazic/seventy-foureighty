@@ -1,0 +1,138 @@
+<!doctype>
+<html>
+<head>
+  <title>Forms</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+
+    .sign-up {
+      width: 500px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="panel panel-default sign-up">
+    <div class="panel-heading">Signup</div>
+    <div class="panel-body">
+
+      <!-- Search doesn't need validation -->
+      <form class="form" novalidate>
+        <div class="form-group">
+          <label>Search</label>
+          <!-- Autofocus set on search, only per form -->
+          <input type="search" class="form-control" autofocus />
+        </div>
+      </form>
+      <form class="form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <!-- Name is required, with some place holder text -->
+          <input type="text" id="name" class="form-control"
+            placeholder="Full name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="gender">Gender</label>
+          <input type="text" id="gender" list="genders" class="form-control" />
+          <datalist id="genders">
+            <option value="Male" />
+            <option value="Female" />
+          </datalist>
+        </div>
+
+        <div class="form-group">
+          <label for="age">Age</label>
+          <!-- Number has a min, max, step and value -->
+          <input type="number" id="age" class="form-control"
+            min="18" max="50" step="1" value="23" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" class="form-control" required />
+        </div>
+
+        <div class="form-group">
+          <label for="url">Website</label>
+          <input type="url" id="url" class="form-control"
+            placeholder="http://www.google.com" />
+        </div>
+
+        <div class="form-group">
+          <label for="tel">Telephone</label>
+          <input type="tel" id="tel" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="tshirt-color">T-Shirt Color</label>
+          <!-- You can set an initial value on color pickers -->
+          <input type="color" id="tshirt-color" class="form-control"
+            value="#2780e3"/>
+        </div>
+
+        <div clss="form-group">
+          <label for="experience">Development Experience</label>
+          <!-- Range also has min, max, step and value -->
+          <div >
+            <input type="range" id="experience"
+              min="0" max="100" step="2" value="50" />
+            <div></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="start-date">Start Date</label>
+          <!-- Date has a min and max as well -->
+          <input type="date" id="start-date" class="form-control"
+            value="2014-12-01" min="2014-01-01"  max="2014-12-31" />
+        </div>
+
+        <div class="form-group">
+          <label for="interview-datetime">Interview Date/Time</label>
+          <input type="datetime" id="interview-datetime" class="form-control"
+            value="2014-12-01T08:30" />
+        </div>
+
+        <div class="form-group">
+          <label for="flight-datetime-local">Flight Date/Time</label>
+          <input type="datetime-local" id="flight-datetime-local"
+            class="form-control" value="2014-12-01T09:30" />
+        </div>
+
+        <div class="form-group">
+          <label for="arrival-time">Arrival Time</label>
+          <input type="time" id="arrival-time" class="form-control"
+            value="10:30:00" />
+        </div>
+
+        <div class="form-group">
+          <label for="birth-month">Birth Month</label>
+          <!-- Value year "-" month -->
+          <input type="month" id="birth-month" class="form-control"
+            value="1991-08" />
+        </div>
+
+        <div class="form-group">
+          <label for="vac-week">Vacation Week</label>
+          <!-- Value is year followed by a "-W" and the week (1-56) -->
+          <input type="week" id="vac-week" class="form-control"
+            value="2014-W22" />
+        </div>
+
+        <button class="btn btn-primary">Register</button>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+    $(document).ready(function() {
+      var experience = $("#experience");
+      experience.next().text(experience.val());
+      experience.on("input", function() {
+        $(this).next().text(this.value);
+      })
+    });
+  </script>
+</body>
+</html>

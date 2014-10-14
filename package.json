@@ -1,0 +1,23 @@
+{
+  "name": "seventy-foureighty",
+  "version": "0.0.0",
+  "description": "Training for Microsoft 70-480",
+  "main": "server.js",
+  "scripts": {
+    "start": "http-server -c-1 -p 4000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zacblazic/seventy-foureighty.git"
+  },
+  "author": "Zac Blazic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zacblazic/seventy-foureighty/issues"
+  },
+  "homepage": "https://github.com/zacblazic/seventy-foureighty",
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "http-server": "^0.7.2"
+  }
+}

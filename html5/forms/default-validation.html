@@ -1,0 +1,75 @@
+<!doctype>
+<html>
+<head>
+  <title>Forms</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+
+    .change-up {
+      width: 500px;
+    }
+
+    input:valid + .invalid {
+      visibility: hidden;
+    }
+
+    input:invalid + .invalid {
+      visibility: visible;
+    }
+
+    input:required {
+      border: 2px solid orange;
+    }
+
+    input:valid {
+      border: 2px solid #ccc;
+    }
+
+    .invalid {
+      height: 20px;
+      padding: 5px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Change Email</div>
+    <div class="panel-body">
+      <form class="form">
+
+        <div class="form-group">
+          <!-- Pattern (regex) to allow only apha and have a min length of 5 -->
+          <input type="text" id="name" class="form-control"
+            pattern="[a-zA-Z]{5,}"
+            maxlength="30"
+            placeholder="Username" required />
+          <div class="invalid">
+            User name can only be alphabetical characters.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="email" id="email" class="form-control"
+            placeholder="Email" required />
+            <div class="invalid">
+              Email can only include @ sign.
+            </div>
+        </div>
+
+        <button class="btn btn-primary">Change</button>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+    $(document).ready(function() {
+      var experience = $("#experience");
+      experience.next().text(experience.val());
+      experience.on("input", function() {
+        $(this).next().text(this.value);
+      })
+    });
+  </script>
+</body>
+</html>
