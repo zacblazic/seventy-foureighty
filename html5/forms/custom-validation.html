@@ -1,0 +1,160 @@
+<!doctype>
+<html>
+<head>
+  <title>Forms</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+
+    .change-up {
+      width: 500px;
+    }
+
+    input:valid + .invalid {
+      visibility: hidden;
+    }
+
+    input:invalid + .invalid {
+      visibility: visible;
+    }
+
+    input:required {
+      border: 2px solid orange;
+    }
+
+    input:valid {
+      border: 2px solid #ccc;
+    }
+
+    .invalid {
+      height: 20px;
+      padding: 5px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Change Email</div>
+    <div class="panel-body">
+      <form class="form" id="change-email-form">
+
+        <div class="form-group">
+          <!-- Pattern (regex) to allow only apha and have a min length of 5 -->
+          <input type="text" id="name" class="form-control"
+            pattern="[a-zA-Z]{5,}"
+            maxlength="30"
+            placeholder="Username" required />
+          <div class="validation-messages">
+            <span data-rule="valueMissing" class="hide">
+              The username is required
+            </span>
+            <span data-rule="patternMismatch" class="hide">
+              Must be a series of alpha characters only (min 5, max 30)
+            </span>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input type="email" id="email" class="form-control"
+            placeholder="Email" required />
+            <div class="validation-messages">
+              <span data-rule="valueMissing" class="hide">
+                An email address is required
+              </span>
+              <span data-rule="typeMismatch" class="hide">
+                Special characters are not allowed
+              </span>
+              <span data-rule="isMicrosoft" class="hide">
+                No Microsoft email addresses are allowed
+              </span>
+            </div>
+        </div>
+
+        <button id="change-btn" class="btn btn-primary">Change</button>
+        <button id="validate-btn" class="btn btn-primary">Validate</button>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+    $(document).ready(function() {
+
+      var ruleNames = [];
+
+      // Get all the rules defined for the form
+      $("[data-rule]").each(function(index, element) {
+        var ruleName = element.getAttribute("data-rule")
+        if ($.inArray(ruleName, ruleNames) < 0) {
+          ruleNames.push(ruleName);
+        }
+      });
+
+      var validate = function() {
+        // Hide validation messages
+        $(".validation-messages span").addClass("hide");
+
+        validateCustomRules();
+
+        // Validate the form (this calls checkValidity on all form elements)
+        document.getElementById("change-email-form")
+          .checkValidity();
+      }
+
+      var validationFail = function(event) {
+        // Can use "this" to reference element too
+        var element = event.srcElement;
+        var validity = element.validity;
+
+        if (!validity.valid) {
+          ruleNames.forEach(function(ruleName) {
+            // Find the broken rule
+            checkRule(validity, ruleName, element);
+          });
+
+          event.preventDefault();
+        }
+      }
+
+      var checkRule = function(state, ruleName, element) {
+        // Checks if the rule has been broken
+        if (state[ruleName]) {
+          $(element).next()
+            .find("[data-rule='" + ruleName + "']")
+            .removeClass("hide");
+        }
+      }
+
+      var validateCustomRules = function() {
+        validateIsMicrosoft();
+      }
+
+      // Custom validation rule that doesn't allow microsoft emails
+      var validateIsMicrosoft = function() {
+        var email = document.getElementById("email");
+        if (email.value.length > 0 &&
+            email.value.indexOf("@microsoft") > 0) {
+
+          // Invalidates it on the form & pseduo classes are applied
+          email.setCustomValidity("invalid");
+
+          // Show validation message
+          $(email).next()
+            .find("[data-rule='isMicrosoft']")
+            .removeClass("hide");
+        } else {
+          // Clear the validation state
+          email.setCustomValidity("");
+        }
+      }
+
+      $(":input:not(:button)").each(function() {
+        this.oninvalid = validationFail;
+        this.onblur = validate;
+      });
+
+      $("#validate-btn").click(validate);
+
+    });
+  </script>
+</body>
+</html>

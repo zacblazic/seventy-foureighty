@@ -61,15 +61,5 @@
       </form>
     </div>
   </div>
-  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
-  <script>
-    $(document).ready(function() {
-      var experience = $("#experience");
-      experience.next().text(experience.val());
-      experience.on("input", function() {
-        $(this).next().text(this.value);
-      })
-    });
-  </script>
 </body>
 </html>
