@@ -1,0 +1,190 @@
+<!doctype>
+<html>
+<head>
+  <title>Media</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+
+    input[type='range'] {
+      width: 200px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .control-group {
+      margin: 15px 0 10px 0;
+    }
+
+    #video-progress {
+      width: 370px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="panel panel-default media">
+    <div class="panel-heading">Custom Controls</div>
+    <div class="panel-body">
+      <h4>Video</h2>
+      <video id="video" width="400px">
+        <source src="movie.mp4" />
+        <!-- If none of the sources work, the following will show -->
+        <p>This browser doesn't support native video</p>
+      </video>
+
+      <div class="control-group">
+        <input type="range" id="video-progress" min="0" max="60" value="0"
+          step="1" />
+        <span class="current-time">0:00</span> /
+        <span class="total-time">0:00</span>
+      </div>
+
+      <div class="control-group">
+        <button id="play-pause-btn" class="btn btn-primary">Play</button>
+        <button id="stop-btn" class="btn btn-primary">Stop</button>
+        <button id="rewind-btn" class="btn btn-primary"><<</button>
+        <button id="begin-btn" class="btn btn-primary"><</button>
+        <button id="end-btn" class="btn btn-primary">></button>
+        <button id="fast-forward-btn" class="btn btn-primary">>></button>
+      </div>
+
+      <div class="control-group">
+        <span>Volume</span>
+        <!-- Max volume is 1 so we need to step in 0.1 increments -->
+        <input type="range" id="volume" min="0" max="1" step="0.1" />
+        <button id="mute-btn" class="btn btn-primary">Mute</button>
+      </div>
+
+      <div class="control-group">
+        <span>Speed</span>
+        <input type="range" id="speed" min="1" max="4" step="1" value="1" />
+      </div>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+    $(document).ready(function() {
+      var video = document.querySelector("#video"),
+          videoProgress = $("#video-progress"),
+          currentTime = $(".current-time"),
+          totalTime = $(".total-time"),
+          playPauseButton = $("#play-pause-btn"),
+          stopButton = $("#stop-btn"),
+          rewindButton = $("#rewind-btn"),
+          beginButton = $("#begin-btn"),
+          endButton = $("#end-btn"),
+          fastForwardButton = $("#fast-forward-btn"),
+          volume = $("#volume"),
+          muteButton = $("#mute-btn"),
+          speed = $("#speed");
+
+        var TIME_STEP = 5;
+
+        var setPlayState = function() {
+          playPauseButton.text("Play");
+          playPauseButton.addClass("btn-primary");
+          playPauseButton.removeClass("btn-default");
+        }
+
+        var setPauseState = function() {
+          playPauseButton.text("Pause");
+          playPauseButton.removeClass("btn-primary");
+          playPauseButton.addClass("btn-default");
+        }
+
+        var formatTime = function(seconds) {
+          seconds = Math.round(seconds);
+          var minutes = 0;
+
+          if (seconds > 59) {
+            minutes = Math.floor(seconds / 60);
+            seconds = seconds - (minutes * 60);
+          }
+
+          seconds = seconds + "";
+          if (seconds.length == 1) {
+            seconds = "0" + seconds;
+          }
+
+          return minutes + ":" + seconds;
+        }
+
+        var playPause = function() {
+          if (video.paused || video.ended) {
+            video.play();
+            setPauseState();
+          } else {
+            video.pause();
+            setPlayState();
+          }
+        };
+
+        playPauseButton.click(playPause);
+        video.addEventListener("click", playPause);
+
+        stopButton.click(function() {
+          // No "stop" function, just pause and reset current time
+          video.pause();
+          video.currentTime = 0;
+
+          setPlayState();
+
+          // Reset the playback rate
+          video.playbackRate = 1;
+          speed.val(1);
+        });
+
+        beginButton.click(function() {
+          video.currentTime = 0;
+        });
+
+        rewindButton.click(function() {
+          video.currentTime -= TIME_STEP;
+        });
+
+        fastForwardButton.click(function() {
+          video.currentTime += TIME_STEP;
+        });
+
+        endButton.click(function() {
+          video.currentTime = video.duration;
+          playPauseButton.text("Play");
+        });
+
+        volume.on("input", function() {
+          video.volume = this.value;
+        });
+
+        var currentVolume = 0;
+        muteButton.click(function() {
+          video.muted = !video.muted;
+
+          if (video.muted) {
+            currentVolume = volume.val();
+            volume.val(0);
+          } else {
+            volume.val(currentVolume);
+          }
+        });
+
+        speed.on("input", function() {
+          video.playbackRate = this.value;
+        });
+
+        videoProgress.on("input", function() {
+          video.currentTime = this.value;
+        });
+
+        video.addEventListener("play", function() {
+          totalTime.text(formatTime(video.duration));
+          videoProgress.attr("max", video.duration);
+        });
+
+        video.addEventListener("timeupdate", function() {
+          currentTime.text(formatTime(video.currentTime));
+          videoProgress.val(video.currentTime);
+        });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!doctype>
+<html>
+<head>
+  <title>Meida</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+
+    .media {
+      width: 500px;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="panel panel-default media">
+    <div class="panel-heading">Basic Media</div>
+    <div class="panel-body">
+      <h4>Video</h2>
+      <video controls width="400px">
+        <source src="movie.mp4" />
+        <!-- If none of the sources work, the following will show -->
+        <p>This browser doesn't support native video</p>
+      </video>
+
+      <h4>Audio</h2>
+      <audio controls>
+        <source src="music.mp3" />
+        <!-- Good solution is to use a flash player as the fallback -->
+        <p>This browser doesn't support native audio</p>
+      </audio>
+    </div>
+  </div>
+</body>
+</html>
