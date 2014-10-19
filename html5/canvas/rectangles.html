@@ -1,0 +1,62 @@
+<!doctype>
+<html>
+<head>
+  <title>Canvas</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Rectangles</div>
+    <div class="panel-body">
+      <form class="form">
+        <canvas id="canvas" height="500px">
+        </canvas>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      var canvas = document.getElementById("canvas");
+      var context = null;
+
+      // Feature detection
+      if (canvas && canvas.getContext) {
+        context = canvas.getContext("2d");
+
+        context.fillStyle = "rgb(0, 161, 247)";
+        context.fillRect(
+          50, // x coord
+          50, // y coord
+          100, // width
+          100 // height
+        );
+
+        // Transparency here
+        context.fillStyle = "rgba(21, 247, 0, 0.5)";
+        context.fillRect(
+          75, // x coord
+          75, // y coord
+          100, // width
+          100 // height
+        );
+
+        context.clearRect(
+          100, // x coord
+          100, // y coord
+          25, // width
+          25 // height
+        );
+
+        context.strokeStyle = "#333";
+        context.lineWidth = 3;
+        context.strokeRect(100, 100, 25, 25);
+      }
+    });
+
+  </script>
+</body>
+</html>

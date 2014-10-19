@@ -1,0 +1,57 @@
+<!doctype>
+<html>
+<head>
+  <title>Canvas</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Circle Clipping</div>
+    <div class="panel-body">
+      <form class="form">
+        <canvas id="canvas" height="500px" width="500px">
+        </canvas>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      var canvas = document.getElementById("canvas");
+      var context = null;
+
+      // Feature detection
+      if (canvas && canvas.getContext) {
+        context = canvas.getContext("2d");
+
+        // When clipping, you have to clip the area first, then render into it
+        context.beginPath();
+        context.arc(
+          250,
+          150,
+          150,
+          0,
+          Math.PI * 2,
+          true
+        );
+        context.closePath();
+        context.clip();
+
+        var image = new Image();
+        image.onload = function() {
+          context.drawImage(image, 0, 0);
+
+          context.lineWidth = 8;
+          context.strokeStyle = "#ccc";
+          context.stroke();
+        }
+        image.src = "home-cat.jpg";
+      }
+    });
+
+  </script>
+</body>
+</html>

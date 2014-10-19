@@ -1,0 +1,50 @@
+<!doctype>
+<html>
+<head>
+  <title>Canvas</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Rectangle Clipping</div>
+    <div class="panel-body">
+      <form class="form">
+        <canvas id="canvas" height="500px" width="500px">
+        </canvas>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      var canvas = document.getElementById("canvas");
+      var context = null;
+      var x = 175;
+      var y = 100;
+      var width = height = 200;
+
+      // Feature detection
+      if (canvas && canvas.getContext) {
+        context = canvas.getContext("2d");
+
+        context.rect(x, y, width, height)
+        context.clip();
+
+        var image = new Image();
+        image.onload = function() {
+          context.drawImage(image, 0, 0);
+
+          context.lineWidth = 8;
+          context.strokeStyle = "#ccc";
+          context.stroke();
+        }
+        image.src = "home-cat.jpg";
+      }
+    });
+
+  </script>
+</body>
+</html>

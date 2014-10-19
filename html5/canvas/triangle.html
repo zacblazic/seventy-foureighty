@@ -1,0 +1,42 @@
+<!doctype>
+<html>
+<head>
+  <title>Canvas</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Triangle</div>
+    <div class="panel-body">
+      <form class="form">
+        <canvas id="canvas">
+        </canvas>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      var canvas = document.getElementById("canvas");
+      var context = null;
+
+      // Feature detection
+      if (canvas && canvas.getContext) {
+        context = canvas.getContext("2d");
+        context.beginPath();
+        context.moveTo(75, 50);
+        context.lineTo(75, 100);
+        context.lineTo(25, 100);
+
+        // Also connects last point to first point
+        context.fill();
+      }
+
+    });
+
+  </script>
+</body>
+</html>

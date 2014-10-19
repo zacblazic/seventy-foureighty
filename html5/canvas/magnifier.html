@@ -1,0 +1,98 @@
+<!doctype>
+<html>
+<head>
+  <title>Canvas</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Magnifier</div>
+    <div class="panel-body">
+      <form class="form">
+        <canvas id="canvas" height="400px" width="500px">
+        </canvas>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      var canvas = document.getElementById("canvas");
+      var context = null;
+      var dataUrl = null;
+      var image = new Image();
+      var isMagnified = false;
+
+      var init = function() {
+        image = new Image();
+        image.onload = function() {
+          context.drawImage(image, 0, 0);
+          dataUrl = canvas.toDataURL();
+        }
+        image.src = "home-cat.jpg";
+        isMagnified = false;
+      };
+
+      var magnify = function() {
+        context.save();
+        context.lineWidth = 5;
+        context.strokeStyle = "#ccc";
+        context.shadowColor = "#000";
+        context.shadowBlur = 15;
+        context.shadowOffsetX = 5;
+        context.shadowOffsetY = 5;
+
+        context.save();
+        context.arc(
+          300,
+          130,
+          100,
+          0,
+          Math.PI * 2,
+          true
+        );
+        context.clip();
+
+        var magnified = new Image();
+        magnified.src = dataUrl;
+        context.scale(1.5, 1.5);
+        context.drawImage(magnified, -100, -60);
+        context.restore();
+
+        context.arc(
+          300,
+          130,
+          100,
+          0,
+          Math.PI * 2,
+          true
+        );
+        context.stroke();
+        context.restore();
+
+        isMagnified = true;
+      }
+
+      // Feature detection
+      if (canvas && canvas.getContext) {
+        context = canvas.getContext("2d");
+
+        init();
+
+        $("#canvas").click(function() {
+          if (isMagnified) {
+            init();
+          } else {
+            magnify();
+          }
+        })
+
+      }
+    });
+
+  </script>
+</body>
+</html>

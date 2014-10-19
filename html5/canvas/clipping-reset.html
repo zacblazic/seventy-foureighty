@@ -1,0 +1,61 @@
+<!doctype>
+<html>
+<head>
+  <title>Canvas</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Reset Clipping</div>
+    <div class="panel-body">
+      <form class="form">
+        <canvas id="canvas" height="500px" width="500px">
+        </canvas>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      var canvas = document.getElementById("canvas");
+      var context = null;
+      var x = 175;
+      var y = 100;
+      var width = height = 200;
+
+      // Feature detection
+      if (canvas && canvas.getContext) {
+        context = canvas.getContext("2d");
+
+        context.fillStyle = "rgba(145,100, 150, 0.6)";
+        context.strokeStyle = "#999";
+        context.lineWidth = 5;
+        context.lineCap = "round";
+
+        // Save just before we set our clip
+        context.save();
+
+        context.beginPath();
+        context.moveTo(10, 10);
+        context.lineTo(10, 300);
+        context.lineTo(250, 300);
+        context.lineTo(120, 50);
+        context.closePath();
+        context.stroke();
+        context.clip();
+
+        context.fillRect(0, 0, 250, 150);
+
+        // Restore to remove clip
+        context.restore();
+
+        context.fillRect(110, 275, 50, 50);
+      }
+    });
+
+  </script>
+</body>
+</html>

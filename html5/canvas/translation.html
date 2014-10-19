@@ -1,0 +1,47 @@
+<!doctype>
+<html>
+<head>
+  <title>Canvas</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+  </style>
+</head>
+<body>
+  <div class="panel panel-default change-up">
+    <div class="panel-heading">Translation</div>
+    <div class="panel-body">
+      <form class="form">
+        <canvas id="canvas" height="500px" width="500px">
+        </canvas>
+      </form>
+    </div>
+  </div>
+  <script src="/vendor/bower_components/jquery/dist/jquery.js"></script>
+  <script>
+
+    $(document).ready(function() {
+      var canvas = document.getElementById("canvas");
+      var context = null;
+
+      // Feature detection
+      if (canvas && canvas.getContext) {
+        context = canvas.getContext("2d");
+
+        // Move base coordinates
+        context.translate(100, 100);
+
+        var image = new Image();
+        image.onload = function() {
+          context.drawImage(image, 0, 0);
+          
+          context.fillStyle = "#000";
+          context.font = "70px arial";
+          context.fillText("MEOW", 10, 10);
+        }
+        image.src = "home-cat.jpg";
+      }
+    });
+
+  </script>
+</body>
+</html>
