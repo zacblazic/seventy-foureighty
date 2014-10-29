@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+  <title>Events</title>
+  <link rel="stylesheet" href="/vendor/bootstrap.min.css" />
+  <style>
+
+    .event-source {
+      padding: 20px;
+      border: 1px solid #ccc;
+      cursor: pointer;
+    }
+
+    .log {
+      height: 200px;
+      overflow: auto;
+      margin-top: 10px;
+    }
+
+    .buttons {
+      margin-top: 10px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Advanced Events</div>
+    <div class="panel-body">
+      <input type="text" id="name" placeholder="Name" />
+      <div class="buttons">
+        <button id="random-button" class="btn btn-default">Random</button>
+        <button id="opacity-button" class="btn btn-default">Toggle Opacity</button>
+        <button id="other-button" class="btn btn-default">Other</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Bubbling vs Capturing</div>
+    <div class="panel-body">
+      <div class="event-source">
+        Outer
+        <div class="event-source">
+          Middle
+          <div class="event-source">
+            Inner
+          </div>
+        </div>
+      </div>
+      <div>
+        <ul class="log">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script src="bubble-capture.js"></script>
+  <script src="advanced.js"></script>
+</body>
+</html>
