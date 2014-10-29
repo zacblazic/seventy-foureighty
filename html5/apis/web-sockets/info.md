@@ -58,4 +58,5 @@ Saves bandwidth, server resources and is real-time.
 
 HTTP headers are 100's of bytes, whereas a socket's framed data is only 2 bytes.
 
-Web sockets sends an initial request to the server, which then upgrades the connection to web sockets protocol. That connection is then maintained.
+Web sockets sends an initial request to the server, which then upgrades the
+connection to web sockets protocol. That connection is then maintained.
