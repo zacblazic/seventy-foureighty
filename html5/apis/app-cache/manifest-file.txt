@@ -1,0 +1,8 @@
+CACHE MANIFEST
+# version 1.5
+
+CACHE:
+caching-events.html
+caching-events.js
+jquery.js
+bootstrap.min.css

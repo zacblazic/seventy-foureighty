@@ -2,8 +2,9 @@
 
 $(document).ready(function() {
 
-  var logList = $("#xhr-fetch-log");
-  var fetchButton = $("#xhr-fetch-button");
+  var logList = $("#fetch-log");
+  var fetchButton = $("#fetch-button");
+  var sendButton = $("#send-button");
 
   var log = function(message) {
     var item = $("<li>", {
@@ -44,10 +45,10 @@ $(document).ready(function() {
       xhr.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=Cape%20Town,za", true);
       xhr.onreadystatechange = function() {
         // If the readyState is 4 and the status is 200, it was successful
-        if (xhr.readyState == 4 && xhr.status == "200") {
+        if (this.readyState == 4 && this.status == "200") {
           // Here we get the response text, as it is json. If using xml, you can
           // use xhr.responseXML
-          log(xhr.responseText);
+          log(this.responseText);
         }
       };
 
@@ -57,19 +58,35 @@ $(document).ready(function() {
 
   });
 
+  sendButton.click(function() {
+    sendText("Hello");
+  });
+
+  // Sending text using xml http request
+  var sendText = function(txt) {
+    var xhr = new XMLHttpRequest();
+
+    // This example doesn't actually send anything, but it is still posting
+    xhr.open("POST", "http://echo.jsontest.com/key/value/one/two", true);
+    xhr.onreadystatechange = function(e) {
+      if (this.readyState == 4 && this.status == 200) {
+        log(this.responseText);
+      }
+    };
+
+    xhr.send(txt);
+  };
+
   var fetchBinary = function(url) {
     // Create the cross-browser xml http request object
     var xhr = createXmlHttpRequest();
-
     xhr.open("GET", url, true);
 
     // Hack to pass bytes through unprocessed
     xhr.overrideMimeType("text/plain; charset=x-user-defined");
-
     xhr.onreadystatechange = function(e) {
       // Check for success
       if (this.readyState == 4 && this.status == 200) {
-
         var binaryString = this.responseText;
         for (var i = 0, len = binaryString.length; i < len; ++i) {
           var c = binStr.charCodeAt(i);
