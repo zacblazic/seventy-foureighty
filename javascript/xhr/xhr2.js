@@ -2,16 +2,15 @@
 
 $(document).ready(function() {
 
-  var logList = $("#fetch-log");
-  var fetchButton = $("#fetch-button");
-  var sendButton = $("#send-button");
+  var logList = $("#xhr2-fetch-log");
+  var fetchButton = $("#xhr2-fetch-button");
 
   var log = function(message) {
     var item = $("<li>", {
       text: message
     });
 
-    logList.append(item);
+    logList.append(item);7
   }
 
   fetchButton.click(function() {
@@ -23,7 +22,9 @@ $(document).ready(function() {
 
     // Handle the response
     xhr.onload = function() {
-      log(this.responseText);
+      if (this.status == 200) {
+        log(this.response);
+      }
     };
 
     // Send the request, can also pass data as an argument
@@ -31,31 +32,12 @@ $(document).ready(function() {
 
   });
 
-  sendButton.click(function() {
-    sendText("Hello");
-  });
-
-  // Sending text using xml http request
-  var sendText = function(txt) {
-    var xhr = new XMLHttpRequest();
-
-    // This example doesn't actually send anything, but it is still posting
-    xhr.open("POST", "http://echo.jsontest.com/key/value/one/two", true);
-    xhr.responseType = "text";
-    xhr.onload = function(e) {
-      if (this.status == 200) {
-        // Notice that we are using response, not responseText
-        log(this.response);
-      }
-    };
-
-    xhr.send(txt);
-  };
-
   var fetchBinary = function() {
 
     var xhr = new XMLHttpRequest();
     xhr.open('GET', '/path/to/image.png', true);
+
+    // Response type can be set to "text", "arraybuffer", "blob", or "document".
     xhr.responseType = 'blob';
 
     xhr.onload = function(e) {
@@ -67,7 +49,5 @@ $(document).ready(function() {
 
     xhr.send();
   };
-
-
 
 });

@@ -1,6 +1,7 @@
 # Web Storage
 
- Comes in two different flavours, namely local storage and session storage. However the API is the same for both.
+ Comes in two different flavours, namely local storage and session storage.
+ However the API is the same for both.
 
 ## Local
 
@@ -49,4 +50,5 @@ Restricted:
 
 ## Handling storage limits
 
-Ensure that you always wrap calls that add data to local storage to handle storage quota exceptions.
+Ensure that you always wrap calls that add data to local storage to handle
+storage quota exceptions.

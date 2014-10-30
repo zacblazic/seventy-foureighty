@@ -57,7 +57,8 @@ files fails to download, none are the files are used in the application. On the
 bright side, this means you know that if successful, all files have been
 downloaded reliably.
 
-The cache manifest must be served as `text/cache-manifest` and encoded as `utf-8`
+The cache manifest must be served as `text/cache-manifest` and encoded as
+`utf-8`.
 
 ## Understanding Caching
 
@@ -72,7 +73,8 @@ from the server again.
 ### Application Caching
 
 Rather than having disparate files that make up your application, it groups them
-together into an application manifest file. These files are set aside and are reliably served from the application cache.
+together into an application manifest file. These files are set aside and are
+reliably served from the application cache.
 
 #### Gotcha
 You should not mix browser caching with application caching!
@@ -106,8 +108,8 @@ Third load (update manifest):
 ### Cache States
 
 * Uncached - Cache not initialized
-* Idle - Cache not being update
+* Idle - Cache not being updated
 * Checking - Looking for manifest changes
 * Downloading - Serving files in manifest to browser
 * UpdateReady - All files in manifest are downloaded
-* Contents of cache are stale and need to be downloaded again
+* Obsolete - Contents of cache are stale and need to be downloaded again

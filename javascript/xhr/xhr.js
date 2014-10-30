@@ -45,7 +45,7 @@ $(document).ready(function() {
       xhr.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=Cape%20Town,za", true);
       xhr.onreadystatechange = function() {
         // If the readyState is 4 and the status is 200, it was successful
-        if (this.readyState == 4 && this.status == "200") {
+        if (this.readyState == 4 && this.status == 200) {
           // Here we get the response text, as it is json. If using xml, you can
           // use xhr.responseXML
           log(this.responseText);
